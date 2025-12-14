@@ -55,11 +55,11 @@ pipeline {
                 echo "Triggering update manifest job..."
                 build job: 'updatemanifest',
                       parameters: [
-                        string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)
-                      [
+                          string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)
+                      ]
             }
         }      
-    
+    }
 
     post {
         success {
