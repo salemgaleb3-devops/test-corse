@@ -6,7 +6,7 @@ def create_app():
     @app.route("/")
     def home():
         return jsonify(
-            message="Please subscribe, like, and comment on this video, TY!!!",
+            message="Hello-World i am salem",
             status="success"
         )
 
