@@ -50,29 +50,16 @@ pipeline {
             }
         }
 
-        stage('Stop Old Container if Running') {
+        stage('Trigger ManifestUpdate') {
             steps {
-                script {
-                    sh """
-                        if [ \$(docker ps -aq -f name=${CONTAINER_NAME}) ]; then
-                            echo "Stopping and removing old container..."
-                            docker stop ${CONTAINER_NAME} || true
-                            docker rm ${CONTAINER_NAME} || true
-                        fi
-                    """
-                }
+                echo "Triggering update manifest job..."
+                build job: 'updatemanifest',
+                      parameters: [
+                        string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)
+                      [
             }
-        }
-
-        stage('Run New Container') {
-            steps {
-                script {
-                    echo "Running new container..."
-                    sh "docker run -d -p 5000:5000 --name ${CONTAINER_NAME} ${IMAGE_NAME}"
-                }
-            }
-        }
-    }
+        }      
+    
 
     post {
         success {
