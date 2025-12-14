@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_USER = "YOUR_DOCKERHUB_USERNAME"
+        DOCKERHUB_USER = "salemghaleb"
         IMAGE_NAME = "${DOCKERHUB_USER}/myflaskapp:latest"
         CONTAINER_NAME = "myflaskcontainer"
         DOCKER_CREDENTIALS = "dockerhub-creds"
